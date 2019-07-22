@@ -1,4 +1,4 @@
-import subprocess32 as subprocess
+import subprocess
 import threading
 import signal
 import tempfile
@@ -20,7 +20,7 @@ def external_process(process_args, input_data='', timeout=None):
       (exit_status, stdout, stderr) -- a tuple of the exit status code and strings containing stdout and stderr data
 
    Examples:
-      >>> external_process(['grep', 'Data'], input_data="Some String\nWith Data")
+      ">>> external_process(['grep', 'Data'], input_data="Some String\nWith Data")
       (0, 'With Data\n', '')
    '''
    process = subprocess.Popen(process_args,
@@ -59,7 +59,7 @@ def temp_file(data, suffix=''):
    return file_path
 
 def random_letters(length):
-   return ''.join(random.choice(string.letters) for i in range(length))
+   return ''.join(random.choice(string.ascii_letters) for i in range(length))
 
 def expand_path(path):
    return os.path.abspath(os.path.expanduser(path))

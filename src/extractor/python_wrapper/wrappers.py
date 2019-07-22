@@ -1,8 +1,9 @@
 from xml.dom.minidom import parseString
-import urllib2 as url
-import ConfigParser
-import MySQLdb as mdb
-import utils
+from urllib.request import urlopen
+
+import configparser
+import pymysql as mdb
+from src.extractor.python_wrapper import utils
 import os
 import sys
 
@@ -109,10 +110,10 @@ def get_connection(hostName, dbName, username, password):
         #con = mdb.connect(user=username, passwd=password, host=hostName, db=dbName)
         con = mdb.connect(hostName, username, password, dbName)
         return con
-    except mdb.Error, e:
-        print "Error %d: %s" % (e.args[0],e.args[1])
+    except mdb.Error as e:
+        print ("Error %d: %s" % (e.args[0],e.args[1]))
         sys.exit(1)
-    print 'error'
+    print('error')
     return None
 
 class MySQLWrapper(Wrapper):
@@ -209,7 +210,7 @@ class HTTPWrapper(Wrapper):
     #Purpose: retrieves batch of documents to process from server
     def get_document_batch(self):
         request = 'http://' + self.host + '/api/getdocs.xml?key=' + self.key + '&n=' + str(self.batchSize)
-        responseString = url.urlopen(request).read()
+        responseString = (request).read()
         response = parseString(responseString)
         docs = response.getElementsByTagName('doc')
         self.batch = docs
@@ -245,11 +246,11 @@ class HTTPWrapper(Wrapper):
         if len(idString) > 0:
             idString = idString[:-1]
             request = 'http://' + self.host + '/api/setdocs.xml?key=' + self.key + '&ids=' + idString + '&state=' + str(state)
-            response = url.urlopen(request).getcode()
+            response = urlopen(request).getcode()
 
     #on_stop()
     #
     #Purpose: perform necessary closing statements
     #Behavior: nothing to do 
     def on_stop(self):
-        print 'closed'
+        print ('closed')

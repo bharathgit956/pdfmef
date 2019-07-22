@@ -3,12 +3,12 @@ import tempfile
 import os
 import subprocess
 import shutil
-from extraction.core import ExtractionRunner
-from extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
-import extractor.csxextract.extractors.grobid as grobid
-import extractor.csxextract.extractors.pdfbox as pdfbox
-import extractor.csxextract.extractors.parscit as parscit
-import extractor.csxextract.filters as filters
+from src.extraction.core import ExtractionRunner
+from src.extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
+import src.extractor.csxextract.extractors.grobid as grobid
+import src.extractor.csxextract.extractors.pdfbox as pdfbox
+import src.extractor.csxextract.extractors.parscit as parscit
+import src.extractor.csxextract.filters as filters
 
 ROOT_FOLDER="../" # there must be a trailing /
 

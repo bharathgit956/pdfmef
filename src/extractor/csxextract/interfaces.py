@@ -1,4 +1,4 @@
-from extraction.runnables import Extractor, Filter
+from src.extraction.runnables import Extractor, Filter
 
 class PlainTextExtractor(Extractor):
    # Extractors extending this extractor should:

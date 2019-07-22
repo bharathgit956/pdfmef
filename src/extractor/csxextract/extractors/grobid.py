@@ -1,11 +1,11 @@
-from extraction.runnables import Extractor, RunnableError, ExtractorResult
-import extractor.csxextract.interfaces as interfaces
-import extractor.csxextract.config as config
-import extractor.csxextract.filters as filters
+from src.extraction.runnables import Extractor, RunnableError, ExtractorResult
+import src.extractor.csxextract.interfaces as interfaces
+import src.extractor.csxextract.config as config
+import src.extractor.csxextract.filters as filters
 import defusedxml.ElementTree as safeET
 import xml.etree.ElementTree as ET
 import xml.sax.saxutils as xmlutils
-import extraction.utils
+import src.extraction.utils
 import tempfile
 import requests
 import re
@@ -42,7 +42,7 @@ def _call_grobid_method(data, method):
       url = '{0}/api/{1}'.format(config.GROBID_HOST, method)
 
       # Write the pdf data to a temporary location so Grobid can process it
-      path = extraction.utils.temp_file(data, suffix='.pdf')
+      path = src.extraction.utils.temp_file(data, suffix='.pdf')
  
       files = {'input': (path, open(path, 'rb')),} 
       
@@ -62,7 +62,7 @@ def _call_grobid_method(data, method):
       #xml_text = remove_xmlns.sub('', resp.content)
       #xml = safeET.fromstring(xml_text)
 
-      xmlstring = re.sub(' xmlns="[^"]+"', '', resp.content, count=1)
+      xmlstring = re.sub('xmlns="[^"]+"', '', resp.content, count=1)
       xml = safeET.fromstring(xmlstring)
 
       return xml

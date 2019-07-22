@@ -1,9 +1,9 @@
-from extraction.runnables import Extractor, RunnableError, ExtractorResult
-import extraction.utils
-import extractor.csxextract.config as config
-import extractor.csxextract.interfaces as interfaces
-import extractor.csxextract.filters as filters
-import extractor.csxextract.utils as utils
+from src.extraction.runnables import Extractor, RunnableError, ExtractorResult
+import src.extraction.utils
+import src.extractor.csxextract.config as config
+import src.extractor.csxextract.interfaces as interfaces
+import src.extractor.csxextract.filters as filters
+import src.extractor.csxextract.utils as utils
 import defusedxml.ElementTree as safeET
 import xml.etree.ElementTree as ET
 import subprocess32 as subprocess
@@ -13,7 +13,7 @@ import shutil
 import glob
 import re
 import tempfile
-     
+
 
 # Takes a TEI xml file of a document (at least containing header info)
 # and outputs an xml file containing header info in CSX format
@@ -39,7 +39,7 @@ class TEItoHeaderExtractor(interfaces.CSXHeaderExtractor):
       if affiliations:
          affiliation_str = " | ".join(map(_get_affiliation_str, affiliations))
          ET.SubElement(result_root, 'affiliation').text = affiliation_str
-         
+
 
       # Retreive author names from TEI doc
       authors = tei_root.findall('./teiHeader//biblStruct//author')
@@ -121,6 +121,10 @@ class TEItoPlainTextExtractor(interfaces.PlainTextExtractor):
 
 # Helper method, takes an affiliation node from Grobid TEI format and
 # generates a plain text string representing the content
+def cmp(score1, score2):
+   return (score1 > score2) - (score1 < score2)
+
+
 def _get_affiliation_str(affiliation_node):
    org_name_nodes = affiliation_node.findall('./orgName')
 
@@ -133,7 +137,7 @@ def _get_affiliation_str(affiliation_node):
       score2 = (0 if not n2.get('type') in types else types.index(n2.get('type')))
       score = -cmp(score1, score2)
 
-      if score != 0: 
+      if score != 0:
          return score
       # if same type or orgName nodes, then order by the key attribute
       else:

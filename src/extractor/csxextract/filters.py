@@ -1,10 +1,11 @@
-from extraction.runnables import Filter, RunnableError
-import extractor.csxextract.config as config
-import extraction.utils
-import extractor.csxextract.interfaces as interfaces
+from src.extraction.runnables import Filter, RunnableError
+import src.extractor.csxextract.config as config
+import src.extraction.utils
+import src.extractor.csxextract.interfaces as interfaces
 import subprocess32 as subprocess
 import tempfile
 import shutil
+import subprocess
 
 class AcademicPaperFilter(Filter):
 
@@ -26,7 +27,7 @@ class AcademicPaperFilter(Filter):
       shutil.copy(config.FILTER_TRAIN_DATA_PATH, temp_dir + 'train_str_f43_paper.arff')
 
       try:
-         status, stdout, stderr = extraction.utils.external_process(['java', '-jar',  config.FILTER_JAR_PATH, temp_dir, id, 'paper'], timeout=20)
+         status, stdout, stderr = src.extraction.utils.external_process(['java', '-jar',  config.FILTER_JAR_PATH, temp_dir, id, 'paper'], timeout=20)
       except subprocess.TimeoutExpired as te:
          raise RunnableError('Filter Jar timed out while processing document')
       finally:

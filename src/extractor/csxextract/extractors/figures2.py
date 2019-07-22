@@ -1,10 +1,11 @@
-from extraction.runnables import Extractor, RunnableError, ExtractorResult
-import extraction.utils
-import extractor.csxextract.interfaces as interfaces
-import extractor.csxextract.config as config
-import extractor.csxextract.filters as filters
-import extractor.csxextract.utils as utils
+from src.extraction.runnables import Extractor, RunnableError, ExtractorResult
+import src.extraction.utils
+import src.extractor.csxextract.interfaces as interfaces
+import src.extractor.csxextract.config as config
+import src.extractor.csxextract.filters as filters
+import src.extractor.csxextract.utils as utils
 import subprocess32 as subprocess
+import subprocess
 import defusedxml.ElementTree as safeET
 import xml.etree.ElementTree as ET
 import os
@@ -21,12 +22,12 @@ class PDFFigures2Extractor(Extractor):
    result_file_name = '.figures'
 
    def extract(self, data, dependency_results):
-      file_path = extraction.utils.temp_file(data, suffix='.pdf')
+      file_path = src.extraction.utils.temp_file(data, suffix='.pdf')
       results_dir = tempfile.mkdtemp() + '/'
 
       try:
          command_args = ['java', '-jar', config.PDFFIGURES2_JAR, file_path, '-m', results_dir, '-d', results_dir]
-         status, stdout, stderr = extraction.utils.external_process(command_args, timeout=30)
+         status, stdout, stderr = src.extraction.utils.external_process(command_args, timeout=30)
       except subprocess.TimeoutExpired:
 	 shutil.rmtree(results_dir)
          raise RunnableError('PDFFigures2 timed out while processing document')

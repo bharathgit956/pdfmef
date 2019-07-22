@@ -1,14 +1,14 @@
-from extraction.core import ExtractionRunner
-from extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
+from src.extraction.core import ExtractionRunner
+from src.extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
 import os
 import sys
-import extractor.csxextract.extractors.grobid as grobid
-import extractor.csxextract.extractors.pdfbox as pdfbox
-import extractor.csxextract.extractors.tei as tei
-import extractor.csxextract.extractors.parscit as parscit
-import extractor.csxextract.extractors.figures as figures
-import extractor.csxextract.extractors.algorithms as algorithms
-import extractor.csxextract.filters as filters
+import src.extractor.csxextract.extractors.grobid as grobid
+import src.extractor.csxextract.extractors.pdfbox as pdfbox
+import src.extractor.csxextract.extractors.tei as tei
+import src.extractor.csxextract.extractors.parscit as parscit
+import src.extractor.csxextract.extractors.figures as figures
+import src.extractor.csxextract.extractors.algorithms as algorithms
+import src.extractor.csxextract.filters as filters
 
 def get_extraction_runner():
 
@@ -46,9 +46,9 @@ if __name__ == '__main__':
             prefixes.append(file[:-4])
 
         #print dir
-        print file
+        print (file)
     runner.run_from_file_batch(files, folders, num_processes=8, file_prefixes=prefixes)
-    print 'done'
+    print('done')
 
     """argc = len(sys.argv)
     if argc == 2:
