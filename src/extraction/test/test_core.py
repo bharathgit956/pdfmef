@@ -3,9 +3,9 @@ import glob
 import shutil
 import tempfile
 import unittest
-from extraction.test.extractors import *
-from extraction.test.filters import *
-from extraction.core import ExtractionRunner
+from src.extraction.test.extractors import *
+from src.extraction.test.filters import *
+from src.extraction.core import ExtractionRunner
 
 class TestExtractionRunner(unittest.TestCase):
    def setUp(self):

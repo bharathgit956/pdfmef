@@ -1,5 +1,5 @@
-from extraction.runnables import Extractor, RunnableError, ExtractorResult
-import extraction.test.filters as filters
+from src.extraction.runnables import Extractor, RunnableError, ExtractorResult
+import src.extraction.test.filters as filters
 import xml.etree.ElementTree as ET
 
 class NothingExtractor(Extractor):

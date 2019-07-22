@@ -1,6 +1,6 @@
 import unittest
 
-from extraction.test import test_core, test_runnables, test_utils
+from src.extraction.test import test_core, test_runnables, test_utils
 
 tests = unittest.TestLoader()
 test_arr = []

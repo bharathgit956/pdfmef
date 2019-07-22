@@ -1,4 +1,4 @@
-from extraction.runnables import Filter
+from src.extraction.runnables import Filter
 import re
 
 class FilterWithoutDeps(Filter):
