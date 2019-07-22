@@ -8,7 +8,7 @@ import cgi
 import shutil
 import magic
 import xml.etree.ElementTree as ET
-from extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
+from src.extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
 
 ROOT_FOLDER="../" # there must be a trailing /
 TMP_FOLDER=tempfile.gettempdir()+"/citeseerextractor/" #Specifies temp folder - useful for cleaning up afterwards
