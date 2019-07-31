@@ -1,18 +1,18 @@
-import ConfigParser
-from python_wrapper import wrappers
-from python_wrapper import utils
+import configparser
+from src.extractor.python_wrapper import wrappers
+from src.extractor.python_wrapper import utils
 from glob import glob
 from datetime import datetime
 
-from extraction.core import ExtractionRunner
-from extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
-import extractor.csxextract.extractors.grobid as grobid
-import extractor.csxextract.extractors.pdfbox as pdfbox
-import extractor.csxextract.extractors.tei as tei
-import extractor.csxextract.extractors.parscit as parscit
-import extractor.csxextract.extractors.figures2 as figures2
-import extractor.csxextract.extractors.algorithms as algorithms
-import extractor.csxextract.filters as filters
+from src.extraction.core import ExtractionRunner
+from src.extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
+import src.extractor.csxextract.extractors.grobid as grobid
+import src.extractor.csxextract.extractors.pdfbox as pdfbox
+import src.extractor.csxextract.extractors.tei as tei
+import src.extractor.csxextract.extractors.parscit as parscit
+import src.extractor.csxextract.extractors.figures2 as figures2
+import src.extractor.csxextract.extractors.algorithms as algorithms
+import src.extractor.csxextract.filters as filters
 
 #read_results(resultsFilePath)
 #
@@ -97,7 +97,7 @@ def get_extraction_runner(modules):
 
 if __name__ == '__main__':
     #initialize configurations
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read('python_wrapper/properties.config')
     connectionProps = dict(config.items('ConnectionProperties'))
     states = dict(config.items('States'))
@@ -139,9 +139,9 @@ if __name__ == '__main__':
         wrapper.get_document_batch()
         documentPaths = wrapper.get_document_paths()
         ids = wrapper.get_document_ids()
-        print ids
+        print (ids)
         if len(ids) == 0:
-            moreDocs = False;
+            moreDocs = False
         if moreDocs:
             outputPaths = []
             files = []
@@ -169,7 +169,7 @@ if __name__ == '__main__':
         #config = ConfigParser.ConfigParser()
         config.read('python_wrapper/properties.config')
         stopProcessing = config.getboolean('ExtractionConfigurations', 'stopProcessing')
-        print 'stopProcessing: ' + str(stopProcessing)
+        print ('stopProcessing: ' + str(stopProcessing))
     wrapper.on_stop()
 
 

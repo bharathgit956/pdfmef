@@ -1,8 +1,8 @@
-import ConfigParser
-from python_wrapper import wrappers
-from python_wrapper import utils
+import configparser
+from src.extractor.python_wrapper import wrappers
+from src.extractor.python_wrapper import utils
 
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.read('python_wrapper/properties.config')
 connectionProps = dict(config.items('ConnectionProperties'))
 states = dict(config.items('States'))
