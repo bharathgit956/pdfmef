@@ -1,6 +1,6 @@
 import configparser
-from src.extractor.python_wrapper import wrappers
-from src.extractor.python_wrapper import utils
+from extractor.python_wrapper import wrappers
+from extractor.python_wrapper import utils
 
 config = configparser.ConfigParser()
 config.read('python_wrapper/properties.config')

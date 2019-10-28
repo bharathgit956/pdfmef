@@ -1,6 +1,6 @@
 import unittest
-import subprocess32 as subprocess
-import src.extraction.utils as utils
+import subprocess
+import extraction.utils as utils
 import os
 
 class TestUtils(unittest.TestCase):
