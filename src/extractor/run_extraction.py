@@ -1,5 +1,5 @@
-from src.extraction.core import ExtractionRunner
-from src.extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
+from extraction.core import ExtractionRunner
+from extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
 import os
 import sys
 import extractor.csxextract.extractors.grobid as grobid
