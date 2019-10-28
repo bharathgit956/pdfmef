@@ -1,11 +1,11 @@
-from src.extraction.runnables import Extractor, RunnableError, ExtractorResult
-import src.extractor.csxextract.interfaces as interfaces
-import src.extractor.csxextract.config as config
-import src.extractor.csxextract.filters as filters
+from extraction.runnables import Extractor, RunnableError, ExtractorResult
+import extractor.csxextract.interfaces as interfaces
+import extractor.csxextract.config as config
+import extractor.csxextract.filters as filters
 import defusedxml.ElementTree as safeET
 import xml.etree.ElementTree as ET
 import xml.sax.saxutils as xmlutils
-import src.extraction.utils
+import extraction.utils
 import tempfile
 import requests
 import re

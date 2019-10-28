@@ -1,12 +1,12 @@
-from src.extraction.runnables import Extractor, RunnableError, ExtractorResult
-import src.extraction.utils
-import src.extractor.csxextract.config as config
-import src.extractor.csxextract.interfaces as interfaces
-import src.extractor.csxextract.filters as filters
-import src.extractor.csxextract.utils as utils
+from extraction.runnables import Extractor, RunnableError, ExtractorResult
+import extraction.utils
+import extractor.csxextract.config as config
+import extractor.csxextract.interfaces as interfaces
+import extractor.csxextract.filters as filters
+import extractor.csxextract.utils as utils
 import defusedxml.ElementTree as safeET
 import xml.etree.ElementTree as ET
-import subprocess32 as subprocess
+#import subprocess32 as subprocess
 import subprocess
 import requests
 import os

@@ -4,9 +4,9 @@ import os
 import logging
 import multiprocessing as mp
 import xml.etree.ElementTree as ET
-from src.extraction.runnables import *
-import src.extraction.utils as utils
-import src.extraction.log as extraction
+from extraction.runnables import *
+import extraction.utils as utils
+import extraction.log as extraction
 
 class ExtractionRunner(object):
    def __init__(self):

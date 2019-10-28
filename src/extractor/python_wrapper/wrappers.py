@@ -3,7 +3,7 @@ from urllib.request import urlopen
 
 import configparser
 import pymysql as mdb
-from src.extractor.python_wrapper import utils
+from python_wrapper import utils
 import os
 import sys
 
@@ -124,7 +124,7 @@ class MySQLWrapper(Wrapper):
     #Parameters: config - dict that holds configurations for a database connection,
     #               states - dict that holds map of state values
     def __init__(self, config, states):
-        self.connection = get_connection(config['host'], config['database'], config['username'], config['password'],config['port'])
+        self.connection = get_connection(config['host'], config['database'], config['username'], config['password'],int(config['port']))
         self.batchSize = int(config['batchsize'])
         self.startID = config['startid']
         self.states = states
@@ -188,7 +188,7 @@ class MySQLWrapper(Wrapper):
             idString += str(doc)
 
         statement = statement.format(state, idString)
-        print(statement)
+        #print(statement)
         cursor.execute(statement)
 
         self.connection.commit()

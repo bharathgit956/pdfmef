@@ -1,19 +1,18 @@
 import configparser
-from src.extractor.python_wrapper import wrappers
-from src.extractor.python_wrapper import utils
+from python_wrapper import wrappers
+from python_wrapper import utils
 from glob import glob
 from datetime import datetime
 import time
-
-from src.extraction.core import ExtractionRunner
-from src.extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
-import src.extractor.csxextract.extractors.grobid as grobid
-import src.extractor.csxextract.extractors.pdfbox as pdfbox
-import src.extractor.csxextract.extractors.tei as tei
-import src.extractor.csxextract.extractors.parscit as parscit
-import src.extractor.csxextract.extractors.figures2 as figures2
-import src.extractor.csxextract.extractors.algorithms as algorithms
-import src.extractor.csxextract.filters as filters
+from extraction.core import ExtractionRunner
+from extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
+import extractor.csxextract.extractors.grobid as grobid
+import extractor.csxextract.extractors.pdfbox as pdfbox
+import extractor.csxextract.extractors.tei as tei
+import extractor.csxextract.extractors.parscit as parscit
+import extractor.csxextract.extractors.figures2 as figures2
+import extractor.csxextract.extractors.algorithms as algorithms
+import extractor.csxextract.filters as filters
 
 #read_results(resultsFilePath)
 #
@@ -25,7 +24,7 @@ def read_results(resultsFilePath, logDirPath):
     resultDict = {}
     resultsFilePath = utils.expand_path(resultsFilePath)
     resultsFile = open(resultsFilePath, 'r')
-    log = open(logDirPath + resultsFilePath[resultsFilePath.rfind('/'):], 'wa')
+    log = open(logDirPath + resultsFilePath[resultsFilePath.rfind('/'):], 'a+')
     for line in resultsFile:
         log.write(line)
         finIndex = line.find('finished')
@@ -54,7 +53,7 @@ def on_batch_finished(resultsFileDirectory, logFilePath, wrapper, states):
     results = read_results(resultsFilePath, logFilePath)
     successes = []
     failures = []
-    for key, value in results.iteritems():
+    for key, value in results.items():
         if value:
             successes.append(key)
         else:
