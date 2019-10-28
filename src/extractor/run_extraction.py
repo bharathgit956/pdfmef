@@ -2,13 +2,13 @@ from src.extraction.core import ExtractionRunner
 from src.extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
 import os
 import sys
-import src.extractor.csxextract.extractors.grobid as grobid
-import src.extractor.csxextract.extractors.pdfbox as pdfbox
-import src.extractor.csxextract.extractors.tei as tei
-import src.extractor.csxextract.extractors.parscit as parscit
-import src.extractor.csxextract.extractors.figures as figures
-import src.extractor.csxextract.extractors.algorithms as algorithms
-import src.extractor.csxextract.filters as filters
+import extractor.csxextract.extractors.grobid as grobid
+import extractor.csxextract.extractors.pdfbox as pdfbox
+import extractor.csxextract.extractors.tei as tei
+import extractor.csxextract.extractors.parscit as parscit
+import extractor.csxextract.extractors.figures as figures
+import extractor.csxextract.extractors.algorithms as algorithms
+import extractor.csxextract.filters as filters
 
 def get_extraction_runner():
 
