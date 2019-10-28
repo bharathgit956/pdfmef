@@ -1,7 +1,7 @@
 import unittest
 import extraction.runnables as runnables
 import extraction.test.filters as filters
-import :wqextraction.test.extractors as extractors
+import extraction.test.extractors as extractors
 import xmltodict
 
 
