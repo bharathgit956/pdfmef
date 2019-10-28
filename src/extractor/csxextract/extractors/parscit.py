@@ -25,11 +25,11 @@ class ParsCitCitationExtractor(interfaces.CSXCitationExtractor):
    def extract(self, data, dependency_results):
       # Get the plain text file of the PDF and write it to a temporary location
       pdf_text = dependency_results[interfaces.PlainTextExtractor].files['.txt']
-      text_file_path = src.extraction.utils.temp_file(pdf_text)
+      text_file_path = extraction.utils.temp_file(pdf_text)
 
       # Run parscit on the text file to extract citations
       try:
-         status, stdout, stderr = src.extraction.utils.external_process(['perl', config.PARSCIT_PATH, text_file_path], timeout=20)
+         status, stdout, stderr = extraction.utils.external_process(['perl', config.PARSCIT_PATH, text_file_path], timeout=20)
       except subprocess.TimeoutExpired as te:
          raise RunnableError('ParsCit timed out while processing document')
       finally:

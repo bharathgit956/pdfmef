@@ -21,11 +21,11 @@ class AlgorithmsExtractor(Extractor):
 
    def extract(self, data, dependency_results):
       results_dir = tempfile.mkdtemp() + '/'
-      temp_pdf_file = src.extraction.utils.temp_file(data)
+      temp_pdf_file = extraction.utils.temp_file(data)
 
       try:
          command_args = ['java', '-jar', config.ALGORITHMS_JAR_PATH, config.ALGORITHMS_PERL_PATH, 'f', temp_pdf_file, results_dir]
-         status, stdout, stderr = src.extraction.utils.external_process(command_args, timeout=20)
+         status, stdout, stderr = extraction.utils.external_process(command_args, timeout=20)
       except subprocess.TimeoutExpired:
          shutil.rmtree(results_dir)
          raise RunnableError('Algorithms Jar timed out while processing document')

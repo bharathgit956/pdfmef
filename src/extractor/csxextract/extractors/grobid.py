@@ -42,7 +42,7 @@ def _call_grobid_method(data, method):
       url = '{0}/api/{1}'.format(config.GROBID_HOST, method)
 
       # Write the pdf data to a temporary location so Grobid can process it
-      path = src.extraction.utils.temp_file(data, suffix='.pdf')
+      path = extraction.utils.temp_file(data, suffix='.pdf')
  
       files = {'input': (path, open(path, 'rb')),} 
       
