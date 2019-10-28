@@ -158,6 +158,15 @@ class ExtractionRunner(object):
 
       self.result_logger.info("Finished Batch {0} Run".format(batch_id))
 
+   def safeStr(self, obj):
+      try:
+         return str(obj)
+      except UnicodeEncodeError:
+         return obj.encode('ascii', 'ignore').decode('ascii')
+      except:
+         return ""
+
+
    def run_from_file_batch(self, file_paths, output_dirs, **kwargs):
       """Run the extractor on a batch of files
 
@@ -198,7 +207,7 @@ class ExtractionRunner(object):
 
       # if any process raised an uncaught exception, we will see it now
       for e in err_check:
-         e.get()
+         return self.safeStr(e.get())
 
       self.result_logger.info("Finished Batch {0} Run".format(batch_id))
 

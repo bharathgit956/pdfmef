@@ -105,10 +105,10 @@ class FileSystemWrapper(Wrapper):
 #Parameters: hostName - hostname that database is on, dbName - name of database,
 #                       username, password
 #Returns: MySQLConnection object
-def get_connection(hostName, dbName, username, password):
+def get_connection(hostName, dbName, username, password,port):
     try:
         #con = mdb.connect(user=username, passwd=password, host=hostName, db=dbName)
-        con = mdb.connect(hostName, username, password, dbName)
+        con = mdb.connect(hostName, username, password, dbName,port)
         return con
     except mdb.Error as e:
         print ("Error %d: %s" % (e.args[0],e.args[1]))
@@ -124,7 +124,7 @@ class MySQLWrapper(Wrapper):
     #Parameters: config - dict that holds configurations for a database connection,
     #               states - dict that holds map of state values
     def __init__(self, config, states):
-        self.connection = get_connection(config['host'], config['database'], config['username'], config['password'])
+        self.connection = get_connection(config['host'], config['database'], config['username'], config['password'],config['port'])
         self.batchSize = int(config['batchsize'])
         self.startID = config['startid']
         self.states = states
@@ -188,7 +188,7 @@ class MySQLWrapper(Wrapper):
             idString += str(doc)
 
         statement = statement.format(state, idString)
-            
+        print(statement)
         cursor.execute(statement)
 
         self.connection.commit()
@@ -253,4 +253,4 @@ class HTTPWrapper(Wrapper):
     #Purpose: perform necessary closing statements
     #Behavior: nothing to do 
     def on_stop(self):
-        print ('closed')
+        print('closed')

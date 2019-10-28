@@ -3,6 +3,7 @@ from src.extractor.python_wrapper import wrappers
 from src.extractor.python_wrapper import utils
 from glob import glob
 from datetime import datetime
+import time
 
 from src.extraction.core import ExtractionRunner
 from src.extraction.runnables import Extractor, RunnableError, Filter, ExtractorResult
@@ -58,8 +59,10 @@ def on_batch_finished(resultsFileDirectory, logFilePath, wrapper, states):
             successes.append(key)
         else:
             failures.append(key)
-    wrapper.update_state(successes, states['pass'])
-    wrapper.update_state(failures, states['fail'])
+    if len(successes) > 0:
+        wrapper.update_state(successes, states['pass'])
+    if len(failures) > 0:
+        wrapper.update_state(failures, states['fail'])
 
 #get_extraction_runner()
 #
@@ -133,7 +136,9 @@ if __name__ == '__main__':
     #main loop
     stopProcessing = config.getboolean('ExtractionConfigurations', 'stopProcessing')
     moreDocs = True
+    count = 0
     while (not stopProcessing) and moreDocs:
+        print(time.time())
         logPath = baseLogPath + dateFolder + 'batch' + str(batchNum)
         runner.enable_logging(logPath, baseLogPath + 'runnables')
         wrapper.get_document_batch()
